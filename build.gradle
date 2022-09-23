@@ -24,7 +24,7 @@ ext {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
-    //implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -40,6 +40,16 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'io.projectreactor:reactor-test'
     testImplementation 'org.springframework.security:spring-security-test'
+    //MapStruct利用のため追加
+    //参考URL -> https://tech.excite.co.jp/entry/2021/04/08/234535
+    implementation 'org.mapstruct:mapstruct:1.5.2.Final'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.2.Final'
+    annotationProcessor 'org.projectlombok:lombok-mapstruct-binding:0.2.0'   // lombokを併用する場合は必要
+    //Webjars
+    implementation 'org.webjars:jquery:3.6.0'
+    implementation 'org.webjars:bootstrap:4.6.1'
+    implementation 'org.webjars.bower:open-iconic:1.1.1'
+    implementation('org.webjars:popper.js:1.16.0')
 }
 
 dependencyManagement {
