@@ -7,11 +7,6 @@ FROM amazoncorretto:17.0.4
 
 ARG JAR_FILE="*.jar"
 COPY ${JAR_FILE} /bin/webapi.jar
-#ADD ./newrelic/newrelic.jar  /app
-#ADD ./newrelic/newrelic.yml  /app
-#ENV NEW_RELIC_APP_NAME="webapi"
-#ENV NEW_RELIC_LICENSE_KEY="xxxx"
-#ENV NEW_RELIC_LOG_FILE_NAME="STDOUT"
 
 RUN ls -l /bin
 
