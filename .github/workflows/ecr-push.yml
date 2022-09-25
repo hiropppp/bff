@@ -24,8 +24,9 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v1
         with:
           role-to-assume: ${{ env.AWS_ROLE_ARN }}
-          role-session-name: deploy-role-session
           aws-region: "ap-northeast-1"
+          role-duration-seconds: 900
+          role-session-name: GitHubActionsTestSession
 
       - name: Login to Amazon ECR
         id: login-ecr
