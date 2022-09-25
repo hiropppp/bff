@@ -17,7 +17,7 @@ jobs:
         run: echo "Hello! ${{ github.event.inputs.name }}"
 
       - name: Checkout
-      - uses: actions/checkout@v2
+        uses: actions/checkout@v2
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
