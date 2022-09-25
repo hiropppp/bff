@@ -35,3 +35,6 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### その場しのぎ ###
+docker/bff-0.0.1-SNAPSHOT.jar
