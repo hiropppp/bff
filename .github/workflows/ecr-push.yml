@@ -1,7 +1,11 @@
 name: ECR Push test
+
 on: 
   workflow_dispatch:
-
+    inputs:
+      name:
+        description: 'Name'
+        required: true
 jobs:
 
   build:
@@ -9,9 +13,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: print log
+        run: echo "Hello! ${{ github.event.inputs.name }}"
+
       - name: Checkout
       - uses: actions/checkout@v2
-      
+
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
