@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 env:
-  AWS_ROLE_ARN: ${{ secrets.AWS_ROLE_ARN }}`
+  AWS_ROLE_ARN: ${{ secrets.AWS_ROLE_ARN }}` # https://dev.classmethod.jp/articles/github-actions-oidc-configure-aws-credentials/
 
 permissions:
   id-token: write
