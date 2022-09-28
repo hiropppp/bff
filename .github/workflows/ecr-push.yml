@@ -17,6 +17,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Debug
+        run: echo "key = ${{ secrets.AWS_ROLE_ARN }}"
+
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@master
         with:
