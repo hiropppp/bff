@@ -17,9 +17,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-    - name: Debug
-      run: |
-        echo "key = ${{ secrets.AWS_ECR_REPO_NAME }}"
+      - name: Debug
+        run: echo "key = ${{ secrets.AWS_ECR_REPO_NAME }}"
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
