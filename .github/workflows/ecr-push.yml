@@ -34,7 +34,7 @@ jobs:
       - name: Normal Run
         if: ${{ github.event.inputs.release != 'true' }} 
         run: |
-          echo "IMAGE_TAG=-${{ github.sha }}" >> $GITHUB_ENV
+          echo "IMAGE_TAG=${{ github.sha }}" >> $GITHUB_ENV
 
       - name: Show inputs
         run: |
