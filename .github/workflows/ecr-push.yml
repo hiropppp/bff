@@ -32,7 +32,12 @@ jobs:
       - name: Normal Run
         if: ${{ github.event.inputs.release == 'true' }} 
         run: |
-          echo "release-${{ env.IMAGE_TAG }}" >> $IMAGE_TAG
+          echo "IMAGE_TAG=release-${{ env.github.sha }}" >> $GITHUB_ENV
+
+      - name: Normal Run
+        if: ${{ github.event.inputs.release != 'true' }} 
+        run: |
+          echo "IMAGE_TAG=-${{ env.github.sha }}" >> $GITHUB_ENV
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@master
