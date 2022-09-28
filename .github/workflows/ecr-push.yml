@@ -36,6 +36,10 @@ jobs:
         run: |
           echo "IMAGE_TAG=-${{ env.github.sha }}" >> $GITHUB_ENV
 
+      - name: Show inputs
+        run: |
+          echo "release: ${{ env.IMAGE_TAG }}"
+
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@master
         with:
