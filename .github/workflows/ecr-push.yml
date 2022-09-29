@@ -19,8 +19,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
 
       - name: Show inputs
         run: |
@@ -42,12 +40,15 @@ jobs:
 
       - name: Show exec branch
         run: |
-          echo ${GITHUB_REF##*/}
+          echo ${ GITHUB_REF_NAME }
 
       - name: main branch check 1
-        if: github.ref == 'refs/heads/main'
+        if: github.ref.name == 'refs/heads/main'
         run: |
           echo "is main"
+
+      - name: Checkout
+        uses: actions/checkout@v2
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@master
