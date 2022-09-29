@@ -48,7 +48,7 @@ jobs:
         env:
           ECR_REPOSITORY: ${{ secrets.AWS_ECR_REPO_NAME }}
         run: |
-          if aws ecr describe-images --repository-name $ECR_REPOSITORY --image-ids imageTag=$IMAGE_TAG --query "imageDetails[*].imageTags[0]" --output text | grep $IMAGE_TAG; then
+          if aws ecr list-images --repository-name $ECR_REPOSITORY --query "imageIds[?imageTag=='$IMAGE_TAG'].imageTag" --output text | grep $IMAGE_TAG; then
             echo 'ok'
           else
             echo 'NG'
