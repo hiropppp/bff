@@ -2,11 +2,6 @@ name: ECR Push release test
 
 on:
   workflow_dispatch:
-    inputs:
-      release:
-        type: boolean
-        description: releaseする？
-        default: false
 
 permissions:
   id-token: write
@@ -28,19 +23,9 @@ jobs:
       - name: Show git branch
         run: git branch
 
-      - name: Show inputs
-        run: |
-          echo "release: ${{ github.event.inputs.release }}"
-
       - name: set release image tag
-        if: ${{ github.event.inputs.release == 'true' }} 
         run: |
           echo "IMAGE_TAG=release-${{ github.sha }}" >> $GITHUB_ENV
-
-      - name: set non-release image tag
-        if: ${{ github.event.inputs.release != 'true' }} 
-        run: |
-          echo "IMAGE_TAG=${{ github.sha }}" >> $GITHUB_ENV
 
       - name: Show image tag
         run: |
@@ -49,6 +34,12 @@ jobs:
       - name: Show exec branch
         run: |
           echo ${GITHUB_REF##*/}
+
+      - name: main branch check 1
+        if: github.ref != 'refs/heads/main'
+        run: |
+          echo "::error::not main"
+          exit 1
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@master
@@ -68,7 +59,5 @@ jobs:
           ECR_REPOSITORY: ${{ secrets.AWS_ECR_REPO_NAME }}
           IMAGE_TAG: ${{ env.IMAGE_TAG }}
         run: |
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG ./docker/
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           docker images $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG --format "{{.Tag}}"
           if docker images $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG --format "{{.Tag}}" | grep $IMAGE_TAG; then echo 'ok'; else exit 1; fi
