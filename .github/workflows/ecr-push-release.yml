@@ -1,6 +1,8 @@
 name: ECR Push release test
 
 on:
+  release:
+    types: [ published ]
   workflow_dispatch:
 
 env:
