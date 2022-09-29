@@ -25,6 +25,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        run: git status
+        run: git branch
 
       - name: Show inputs
         run: |
