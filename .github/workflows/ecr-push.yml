@@ -1,8 +1,6 @@
 name: ECR Push test
 
 on:
-  push:
-    [ main ]
   workflow_dispatch:
     inputs:
       release:
