@@ -26,10 +26,6 @@ jobs:
       - name: Show git branch
         run: git branch
 
-      - name: Show image tag
-        run: |
-          echo "IMAGE_TAG: ${{ env.IMAGE_TAG }}"
-
       - name: Show exec branch
         run: |
           echo ${GITHUB_REF##*/}
@@ -51,7 +47,6 @@ jobs:
       - name: release image check
         env:
           ECR_REPOSITORY: ${{ secrets.AWS_ECR_REPO_NAME }}
-          IMAGE_TAG: ${{ env.IMAGE_TAG }}
         run: |
           if aws ecr describe-images --repository-name $ECR_REPOSITORY --image-ids imageTag=$IMAGE_TAG --query "imageDetails[*].imageTags[0]" --output text | grep $IMAGE_TAG; then
             echo 'ok'
