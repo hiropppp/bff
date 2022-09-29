@@ -42,7 +42,7 @@ jobs:
 
       - name: Show exec branch
         run: |
-          echo ${ GITHUB_REF##*/ }
+          echo ${GITHUB_REF##*/}
 
       - name: main branch check 1
         if: github.ref == 'refs/heads/main'
