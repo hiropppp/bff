@@ -3,6 +3,9 @@ name: ECR Push release test
 on:
   workflow_dispatch:
 
+env:
+  IMAGE_TAG: release-${{ github.sha }}
+
 permissions:
   id-token: write
   contents: read
@@ -22,10 +25,6 @@ jobs:
 
       - name: Show git branch
         run: git branch
-
-      - name: set release image tag
-        run: |
-          echo "IMAGE_TAG=release-${{ github.sha }}" >> $GITHUB_ENV
 
       - name: Show image tag
         run: |
