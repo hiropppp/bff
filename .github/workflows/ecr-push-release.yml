@@ -2,11 +2,6 @@ name: ECR Push release test
 
 on:
   workflow_dispatch:
-    inputs:
-      release:
-        type: boolean
-        description: releaseする？
-        default: false
 
 permissions:
   id-token: write
@@ -69,4 +64,4 @@ jobs:
           IMAGE_TAG: ${{ env.IMAGE_TAG }}
         run: >
           if docker images $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG --format "{{.Tag}}"
-          | grep $IMAGE_TAG; then echo 'ok'; echo 'NG' else exit 1; fi
+          | grep $IMAGE_TAG; then echo 'ok'; echo 'NG'; fi
