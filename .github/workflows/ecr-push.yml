@@ -22,6 +22,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Show exec branch 1
+        run: |
+          echo "exec branch: ${{ GITHUB_REF#refs/heads/ }}"
+
+      - name: Show exec branch 2
+        run: |
+          echo "exec branch: ${ GITHUB_REF##*/ }"
+
+      - name: Show exec branch 3
+        run: |
+          echo "exec branch: ${ GITHUB_REF }"
+
       - name: Show inputs
         run: |
           echo "release: ${{ github.event.inputs.release }}"
