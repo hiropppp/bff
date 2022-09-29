@@ -35,12 +35,11 @@ jobs:
 
       - name: main branch check 1
         run: |
-          if [[ ${GITHUB_REF##*/} =~ $SEM_VER_RegEx ]];; then
+          if [[ ${GITHUB_REF##*/} =~ $SEM_VER_RegEx ]]; then
             echo 'ok'
           else
             echo "::error::not Semantic Versioning"
           fi
-
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@master
