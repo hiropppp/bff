@@ -1,4 +1,4 @@
-name: ECR Push test
+name: ECR Push release test
 
 on:
   workflow_dispatch:
