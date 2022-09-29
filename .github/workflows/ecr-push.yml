@@ -22,35 +22,37 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Show exec branch 1
-        run: |
-          echo ${GITHUB_REF##*/}
-
-      - name: Show exec branch 2
-        run: |
-          echo "exec branch: ${ GITHUB_REF##*/ }"
-
-      - name: Show exec branch 3
-        run: |
-          echo "exec branch: ${ GITHUB_REF }"
-
       - name: Show inputs
         run: |
           echo "release: ${{ github.event.inputs.release }}"
 
-      - name: Normal Run
+      - name: set release image tag
         if: ${{ github.event.inputs.release == 'true' }} 
         run: |
           echo "IMAGE_TAG=release-${{ github.sha }}" >> $GITHUB_ENV
 
-      - name: Normal Run
+      - name: set non-release image tag
         if: ${{ github.event.inputs.release != 'true' }} 
         run: |
           echo "IMAGE_TAG=${{ github.sha }}" >> $GITHUB_ENV
 
-      - name: Show inputs
+      - name: Show image tag
         run: |
           echo "IMAGE_TAG: ${{ env.IMAGE_TAG }}"
+
+      - name: Show exec branch
+        run: |
+          echo ${GITHUB_REF##*/}
+
+      - name: main branch check 1
+        if: github.ref == 'refs/heads/main' }} 
+        run: |
+          echo "is main"
+
+      - name: main branch check 2
+        if: ${ GITHUB_REF##*/ == 'main'}
+        run: |
+          echo "is main"
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@master
