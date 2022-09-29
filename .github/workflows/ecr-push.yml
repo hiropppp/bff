@@ -49,11 +49,6 @@ jobs:
         run: |
           echo "is main"
 
-      - name: main branch check 2
-        if: ${ GITHUB_REF##*/ == 'main'}
-        run: |
-          echo "is main"
-
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@master
         with:
