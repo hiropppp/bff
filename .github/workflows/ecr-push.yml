@@ -11,6 +11,9 @@ on:
         description: releaseする？
         default: false
 
+env:
+  IMAGE_TAG: ${{ github.sha }}
+
 permissions:
   id-token: write
   contents: read
@@ -39,11 +42,6 @@ jobs:
         if: ${{ github.event.inputs.release == 'true' }} 
         run: |
           echo "IMAGE_TAG=release-${{ github.sha }}" >> $GITHUB_ENV
-
-      - name: set non-release image tag
-        if: ${{ github.event.inputs.release != 'true' }} 
-        run: |
-          echo "IMAGE_TAG=${{ github.sha }}" >> $GITHUB_ENV
 
       - name: Show image tag
         run: |
