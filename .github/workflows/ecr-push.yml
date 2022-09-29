@@ -24,7 +24,7 @@ jobs:
 
       - name: Show exec branch 1
         run: |
-          echo "exec branch: ${{ GITHUB_REF#refs/heads/ }}"
+          echo "exec branch: ${{ GITHUB_REF }}"
 
       - name: Show exec branch 2
         run: |
