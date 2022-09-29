@@ -48,10 +48,6 @@ jobs:
           role-duration-seconds: 900
           role-session-name: GitHubActionsTestSession
 
-      - name: Login to Amazon ECR
-        id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v1
-
       - name: release image check
         env:
           ECR_REPOSITORY: ${{ secrets.AWS_ECR_REPO_NAME }}
