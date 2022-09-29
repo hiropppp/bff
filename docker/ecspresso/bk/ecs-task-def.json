@@ -1,0 +1,46 @@
+{
+  "containerDefinitions": [
+    {
+      "cpu": 0,
+      "environment": [],
+      "essential": true,
+      "image": "263973347380.dkr.ecr.ap-northeast-1.amazonaws.com/webapi:7c5860c001406385abee0eb88434bcc64e50e4b6",
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/webapi/backend/app",
+          "awslogs-region": "ap-northeast-1",
+          "awslogs-stream-prefix": "ecs"
+        }
+      },
+      "mountPoints": [],
+      "name": "webapi-app-container-backend",
+      "portMappings": [
+        {
+          "containerPort": 80,
+          "hostPort": 80,
+          "protocol": "tcp"
+        }
+      ],
+      "secrets": [],
+      "volumesFrom": []
+    }
+  ],
+  "cpu": "256",
+  "executionRoleArn": "arn:aws:iam::263973347380:role/ecs_task_execution_role",
+  "family": "webapi-app-task-backend",
+  "memory": "512",
+  "networkMode": "awsvpc",
+  "placementConstraints": [],
+  "requiresCompatibilities": [
+    "FARGATE"
+  ],
+  "tags": [
+    {
+      "key": "application",
+      "value": "webapi"
+    }
+  ],
+  "taskRoleArn": "arn:aws:iam::263973347380:role/ecs_task_execution_role",
+  "volumes": []
+}
