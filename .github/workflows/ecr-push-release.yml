@@ -64,8 +64,8 @@ jobs:
           IMAGE_TAG: ${{ env.IMAGE_TAG }}
         run: |
           if docker images $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG --format "{{.Tag}}" | grep $IMAGE_TAG; then 
-            echo 'OK'; 
+            echo 'OK'
           else
             echo 'NG'
-            exit 1;
+            exit 1
           fi
