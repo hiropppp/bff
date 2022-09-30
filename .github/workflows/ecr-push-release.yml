@@ -7,7 +7,7 @@ on:
 
 env:
   IMAGE_TAG: release-${{ github.sha }}
-  SEM_VER_RegEx: ^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$
+  SEM_VER_RegEx: ^[0-9]+\.[0-9]+\.[0-9]+.*$
 
 
 permissions:
@@ -34,16 +34,7 @@ jobs:
         run: |
           echo ${GITHUB_REF##*/}
 
-      - name: Semantic Versioning check1
-        run: |
-          if [[ ${GITHUB_REF##*/} =~ ^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$ ]]; then
-            echo 'ok'
-          else
-            echo "::error::not Semantic Versioning"
-             exit 1
-          fi
-
-      - name: Semantic Versioning check2
+      - name: Semantic Versioning check
         run: |
           if [[ ${GITHUB_REF##*/} =~ $SEM_VER_RegEx ]]; then
             echo 'ok'
