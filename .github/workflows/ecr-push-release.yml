@@ -33,12 +33,13 @@ jobs:
         run: |
           echo ${GITHUB_REF##*/}
 
-      - name: main branch check 1
+      - name: Semantic Versioning check
         run: |
           if [[ ${GITHUB_REF##*/} =~ $SEM_VER_RegEx ]]; then
-            echo 'ok'
+            echo 'okok'
           else
             echo "::error::not Semantic Versioning"
+             exit 1
           fi
 
       - name: Configure AWS Credentials
