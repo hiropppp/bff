@@ -36,7 +36,7 @@ jobs:
       - name: Semantic Versioning check
         run: |
           if [[ ${GITHUB_REF##*/} =~ $SEM_VER_RegEx ]]; then
-            echo 'okok'
+            echo 'ok'
           else
             echo "::error::not Semantic Versioning"
              exit 1
