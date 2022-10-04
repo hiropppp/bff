@@ -1,14 +1,14 @@
-name: ECR Push test
+name: ECR Push
 
 on:
-  push:
-    branches:
-      - main
+#  push:
+#    branches:
+#      - main
   workflow_dispatch:
     inputs:
       release:
         type: boolean
-        description: releaseする？
+        description: Create a release image?
         default: false
 
 env:

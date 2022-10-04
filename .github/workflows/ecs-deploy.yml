@@ -1,4 +1,4 @@
-name: ECR Push release test
+name: ECS Deploy
 
 on:
   release:
@@ -34,14 +34,14 @@ jobs:
         run: |
           echo ${GITHUB_REF##*/}
 
-      - name: Semantic Versioning check
-        run: |
-          if [[ ${GITHUB_REF##*/} =~ $SEM_VER_RegEx ]]; then
-            echo 'ok'
-          else
-            echo "::error::not Semantic Versioning"
-             exit 1
-          fi
+#      - name: Semantic Versioning check
+#        run: |
+#          if [[ ${GITHUB_REF##*/} =~ $SEM_VER_RegEx ]]; then
+#            echo 'ok'
+#          else
+#            echo "::error::not Semantic Versioning"
+#             exit 1
+#          fi
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@master
@@ -71,5 +71,4 @@ jobs:
       - uses: Gamesight/slack-workflow-status@master
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          slack_webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
-          icon_emoji: ':octocat:'
+          slack_webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}   
