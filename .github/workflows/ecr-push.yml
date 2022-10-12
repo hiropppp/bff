@@ -72,7 +72,7 @@ jobs:
 
   slack-notify:
     if: always()
-    needs: [ build ]
+    needs: [ ecr-push ]
     name: workflow notification to slack
     runs-on: ubuntu-latest
     steps:
